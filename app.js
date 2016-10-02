@@ -15,7 +15,7 @@
 							ctrl.show = true;
 						}
 						
-						ctrl.text = undefined;
+						
 						
 					}, function(data){
 
@@ -58,8 +58,12 @@
 			var service = this;
 
 			this.getMatchedMenuItems = function(text){
+				
 				return $http.get('https://davids-restaurant.herokuapp.com/menu_items.json')
 					.then(function(response){
+						if(text === undefined || text.trim() === ''){
+							return [];
+						}
 						var arr = response.data.menu_items;
 						var res = [];
 						for(var i=0;i<arr.length;i++){
